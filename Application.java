@@ -54,6 +54,9 @@ public class Application {
 			case "E":
 				login();
 				break;
+			case "T":
+				listPostsOfOtherUser();
+				break;
 			case "V":
 				listPostsOfOtherUser();
 				break;
@@ -184,7 +187,7 @@ public class Application {
 	static void createPost() {
 		System.out.println("Escreva o conteúdo do post.");
 		String conteudo = sc.nextLine();
-		if(conteudo.equals("")) {
+		if(conteudo.equals("") || conteudo.isBlank()) {
 			System.out.println("Nenhum conteúdo inserido no post.");
 			return;
 		} else {
@@ -218,7 +221,7 @@ public class Application {
 	
 	static void listPostsOfOtherUser() {
 		if(systemHasAnyUser()) {
-			System.out.println("Deseja ver os posts de qual usuário? ");		
+			System.out.println("Deseja ver os posts de qual usuário?\nInforme o login dele: ");		
 			String login = sc.nextLine();
 			for(Perfil p : perfis) {
 				if(loginExists(login)) {
