@@ -14,8 +14,7 @@ public class Application {
 
 	static List<Perfil> perfis = new ArrayList<Perfil>();
 	static Perfil perfilLogado = new Perfil();
-	static DateTimeFormatter dataFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	static DateTimeFormatter horaFormat = DateTimeFormatter.ofPattern("HH:mm:SS");
+	static DateTimeFormatter dataFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 	static Scanner sc = new Scanner(System.in);
 	
 	static boolean flagMenu = true;
@@ -23,7 +22,7 @@ public class Application {
 	static boolean welcomeFlag = true;
 	
 	public static void main(String[] args) {
-		
+			
 		while(flagMenu) {
 			loadMenu();
 			if(flagMenuLogado) {
@@ -34,8 +33,9 @@ public class Application {
 				}
 			}
 		}
-		sc.close();
+		
 	}
+
 
 	static void loadMenu() {
 		System.out.println("\n====== MENU PRINCIPAL =======");
@@ -184,14 +184,16 @@ public class Application {
 		}
 	}
 
-	static void createPost() {
-		System.out.println("Escreva o conteúdo do post.");
+	public static void createPost() {
+		System.out.println("Escreva o conteúdo do post:");
 		String conteudo = sc.nextLine();
 		if(conteudo.equals("") || conteudo.isBlank()) {
 			System.out.println("Nenhum conteúdo inserido no post.");
 			return;
 		} else {
-			perfilLogado.generateNewPost(conteudo);
+			perfilLogado.generateNewPost();
+			int id = perfilLogado.getPosts().size() - 1;
+			perfilLogado.getPosts().get(id).setConteudo(conteudo);
 			System.out.println("Post criado com sucesso!");
 		}
 	}
@@ -212,7 +214,7 @@ public class Application {
 			for(Post p : perfilLogado.getPosts()) {
 				System.out.println(
 					"Post " + p.getId() 
-					+ "\nData: " + p.getData().format(dataFormat) + " " + p.getHora().format(horaFormat) 
+					+ "\nData: " + p.getData().format(dataFormat) 
 					+ "\nTexto: " + p.getConteudo()
 					+ "\n-----------------------------");
 			}
@@ -232,7 +234,7 @@ public class Application {
 							for(Post i : p.getPosts()) {
 								System.out.println(
 									"Post " + i.getId()
-									+ "\nData: " + i.getData().format(dataFormat) + " " + i.getHora().format(horaFormat)
+									+ "\nData: " + i.getData().format(dataFormat)
 									+ "\nTexto: " + i.getConteudo()
 									+ "\n-----------------------------");
 							}

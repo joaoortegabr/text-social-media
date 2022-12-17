@@ -1,7 +1,6 @@
 package projeto.entities;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,20 +52,15 @@ public class Perfil {
 		this.posts = posts;
 	}
 
-	public void generateNewPost(String conteudo) {
+	public void generateNewPost() {
 		Post p = new Post();
+		p.setData(LocalDateTime.now());
 		if(posts == null) {
-			p.setData(LocalDate.now());
-			p.setHora(LocalTime.now());
-			p.setConteudo(conteudo);
-			posts.add(p);
+			p.setId((long) 1);
 		} else {
 			p.setId((long) (posts.size() + 1));
-			p.setData(LocalDate.now());
-			p.setHora(LocalTime.now());
-			p.setConteudo(conteudo);
-			posts.add(p);
 		}
+		posts.add(p);
 	}
 	
 	@Override

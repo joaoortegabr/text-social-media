@@ -1,21 +1,18 @@
 package projeto.entities;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 public class Post {
 
 	private Long id;
-	private LocalDate data;
-	private LocalTime hora;
+	private LocalDateTime data;
 	private String conteudo;
 	
 	public Post() {
 	}
 
-	public Post(LocalDate data, LocalTime hora, String conteudo) {
+	public Post(LocalDateTime data, String conteudo) {
 		this.data = data;
-		this.hora = hora;
 		this.conteudo = conteudo;
 	}
 
@@ -27,20 +24,12 @@ public class Post {
 		this.id = id;
 	}
 
-	public LocalDate getData() {
+	public LocalDateTime getData() {
 		return data;
 	}
 
-	public void setData(LocalDate data) {
+	public void setData(LocalDateTime data) {
 		this.data = data;
-	}
-
-	public LocalTime getHora() {
-		return hora;
-	}
-
-	public void setHora(LocalTime hora) {
-		this.hora = hora;
 	}
 
 	public String getConteudo() {
@@ -53,7 +42,7 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post " + id + "\nData: " + data + " " + hora + "\nTexto: " + conteudo;
+		return "Post " + id + "\nData: " + data + "\nTexto: " + conteudo;
 	}
 	
 }
